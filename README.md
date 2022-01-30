@@ -5,15 +5,25 @@ If you don't code and you want to directly use the data visualization app - go [
 
 Concerning your data: I don't have access to it through the shiny app, but I can't truly explain what happens to it when you upload it to R servers. If you don't want to upload your data like that you could download this repository instead, install R on your computer - it's free - and run my_netflix_project/app.R. It will ask you to provide the same file, but this time it won't upload it anywhere on the Internet, the file stays on your computer. 
 Alternatively, you could preprocess your ViewingActivity.csv with the code below. This way the data will not contain any information that would personally identify you, it will only contain the names of the tv shows you watched, for how long and when you watched it (without specifying who this "you" is). 
-#### To anonymize your data run this:
+#### To anonymize your data run this in R:
 ```
-PATH <- #PROVIDE THE PATH TO YOUR DATA HERE
-NEW_PATH <- #PROVIDE THE DIRECTORY WHERE YOU WANT TO STORE THE FILTERED DATA
+PATH <- #PROVIDE THE PATH TO YOUR DATA HERE AS A STRING
+NEW_PATH <- #PROVIDE AS A STRING THE PATH WHERE THE NEW DATA SHOULD BE STORED, INCLUDING THE NEW NAME AND .CSV
 data <- read.csv(PATH)
 new_data <- data[ , c("Start.Time","Duration","Title")]
 write.csv(new_data, NEW_PATH, row.names = FALSE)
 ```
+You could then upload the new, filtered data to the online app safely and get it visualized. 
 ### What does the code do
 Processing of the data is the same in both app and dashboard. The data of the start.time variable is transformed into date objects. The data of the duration variable - into time objects. A new variable dur_in_min is created to incorporate hours, minutes and seconds into one value. A general_title variable contains filtered cleaned titles, so that, for example, "The Big Bang Theory: Season 1 Episode...." and "The Big Bang Theory: Season 5 Episode..." can be considered as instances of the same show, "The Big Bang Theory". A separate dataframe is created that aggregates duration in minutes according to these general titles. Another aggregated dataframe contains duration of viewing per year. A linear regression model is fitted with start.time as predictor and duration in minutes as outcome variables. The coefficients of the model are used for plotting the regression line, the assumptions are checked with gvlma(). 
 
-The data is visualized with basic R graphics. 
+The data is visualized with basic R graphics. Barplot(), scatterplot() and abline() are used. 
+#### R packages you will need to run the code on your PC:
+* shiny (if you want to run app.R)
+* chron
+* extrafont
+* dplyr
+* gvlma
+* flexdashboard (if you want to run flexdashboard.Rmd)
+If extrafont can't find Century Gothic - run `font_import()` . Or just enjoy the default font family :-) 
+
