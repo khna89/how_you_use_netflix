@@ -5,13 +5,14 @@ library(dplyr)
 library(gvlma)
 
 ui <- fluidPage(fluidRow(
-    column(4,sliderInput(inputId="num",
+    column(3,sliderInput(inputId="num",
                             label = "Choose the number of the shows included in the top",
                             value = 10, min = 1, max = 30), 
             fileInput(inputId = "file",
                       label = "Please upload your ViewingActivity.csv",
-                      accept=".csv")),
-    column(8, plotOutput("barpl"))),
+                      accept=".csv"),
+           htmlOutput("total_hrs")),
+    column(9, plotOutput("barpl"))),
     fluidRow(column(4, plotOutput("dur_per_year")),
              column(4, plotOutput("dur_per_time")),
              column(4, verbatimTextOutput("assumptions")))
@@ -52,6 +53,15 @@ server <- function(input,output) {
     mod <- reactive({
         data <- data()
         mod <- lm(dur_in_min~Start.Time,data)
+    })
+    output$total_hrs <- renderUI({
+        data <- data()
+        total_hrs_num <- round(sum(data$dur_in_min)/60)
+        tags$div(p(tags$b("Total hours watched: ")),
+                 p(style = "color:#4D4D4D; font-size:60px; 
+                     text-align:center; font-family:Century Gothic", 
+                   tags$b(total_hrs_num))
+        )
     })
     output$barpl <- renderPlot({
         

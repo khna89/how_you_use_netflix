@@ -5,9 +5,9 @@ account: nin-khodorivsko
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 5534940
-bundleId: 5519405
+bundleId: 5524138
 url: https://nin-khodorivsko.shinyapps.io/my_netflix_project/
-when: 1643398482.97215
-lastSyncTime: 1643398482.97215
+when: 1643568867.56966
+lastSyncTime: 1643568867.56966
 asMultiple: FALSE
 asStatic: FALSE
