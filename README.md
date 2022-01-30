@@ -25,5 +25,6 @@ The data is visualized with basic R graphics. Barplot(), scatterplot() and ablin
 * dplyr
 * gvlma
 * flexdashboard (if you want to run flexdashboard.Rmd)
+
 If extrafont can't find Century Gothic - run `font_import()` . Or just enjoy the default font family :-) 
 
