@@ -37,3 +37,12 @@ The data is visualized with basic R graphics. Barplot(), scatterplot() and ablin
 
 If extrafont can't find Century Gothic - run `font_import()` . Or just enjoy the default font family :-) 
 
+### Statistics
+The model that is included in the app is really simple. Due to the number of data points the one for my data is highly significant, but the assumptions on which linear regression is based are not satisfied, so maybe one shouldn't really trust that line that much. I'm curious how it's going to work with other data though. 
+
+Also be aware that the scatterplot visualizes duration per view as related to the date when you watched something. It means it also visualizes every time when Netflix automatically played a short piece of the video to give you a taste of it. So the line in my data, which is going down, doesn't suggest that me and my partner watch less movies now compared to 2017 but rather that maybe for some reason we watch more previews recently (which is also interesting, but it's another kind of information). The total amount of time spent on watching is represented by the other graphs and they are probably more useful for accessing what you do with your free time.
+
+### Sources 
+I learned basic R visualization with [Learning Statistics with R](https://learningstatisticswithr.com/) by Danielle Navarro.
+I'm grateful for RStudio's [How to Start Shiny tutorial](https://shiny.rstudio.com/tutorial/) and [Using flexdashboard](https://rstudio.github.io/flexdashboard/articles/using.html) article.
+I'm grateful to [my partner](https://www.linkedin.com/in/soldado-koval/) for finding the Netflix data and suggesting the idea. 
